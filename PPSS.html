@@ -95,7 +95,9 @@ background: linear-gradient(180deg, rgba(255,255,255,0.95) 0%, rgba(255,255,255,
 <a href="https://readdy.ai/home/e0313b02-e324-4884-8169-a25819dc9960/90afa3b0-2914-4ba5-8e71-f76fce76d8f4" data-readdy="true">
 <button class="bg-primary text-white px-8 py-4 !rounded-button hover:bg-primary/90 text-lg font-medium cursor-pointer whitespace-nowrap">Get Started</button>
 </a>
+<a href="https://readdy.ai/home/e0313b02-e324-4884-8169-a25819dc9960/964361f7-929c-48ea-ab33-70c1b10f6bc8" data-readdy="true">
 <button class="bg-white border-2 border-primary text-primary px-8 py-4 !rounded-button hover:bg-gray-50 text-lg font-medium cursor-pointer whitespace-nowrap">Learn More</button>
+</a>
 </div>
 </div>
 </div>
@@ -233,6 +235,18 @@ background: linear-gradient(180deg, rgba(255,255,255,0.95) 0%, rgba(255,255,255,
 <div class="w-4 h-4 border-2 border-primary border-t-transparent rounded-full animate-spin"></div>
 </div>
 </button>
+<div id="successModal" class="hidden fixed inset-0 bg-black bg-opacity-50 z-50 flex items-center justify-center">
+<div class="bg-white rounded-lg p-8 max-w-md w-full mx-4">
+<div class="text-center">
+<div class="w-16 h-16 bg-green-100 rounded-full flex items-center justify-center mx-auto mb-4">
+<i class="ri-check-line text-3xl text-green-500"></i>
+</div>
+<h3 class="text-xl font-semibold text-gray-900 mb-2">Welcome to Promasters!</h3>
+<p class="text-gray-600 mb-6">Thank you for joining us. We'll be in touch shortly with next steps.</p>
+<button onclick="closeSuccessModal()" class="bg-primary text-white px-6 py-2 !rounded-button hover:bg-primary/90 cursor-pointer whitespace-nowrap">Continue</button>
+</div>
+</div>
+</div>
 </form>
 <div id="signupModal" class="hidden fixed inset-0 bg-black bg-opacity-50 z-50 flex items-center justify-center">
 <div class="bg-white rounded-lg p-8 max-w-md w-full mx-4">
@@ -366,7 +380,9 @@ submitBtn.disabled = true;
 loadingSpinner.classList.remove('hidden');
 try {
 await new Promise(resolve => setTimeout(resolve, 1500));
+if (document.getElementById('signupModal')) {
 closeSignupModal();
+}
 document.getElementById('successModal').classList.remove('hidden');
 document.body.style.overflow = 'hidden';
 document.getElementById(formId).reset();
@@ -377,6 +393,10 @@ submitBtn.disabled = false;
 loadingSpinner.classList.add('hidden');
 }
 };
+}
+function closeSuccessModal() {
+document.getElementById('successModal').classList.add('hidden');
+document.body.style.overflow = '';
 }
 document.getElementById('signupForm').addEventListener('submit',
 handleSignupSubmit('signupForm', 'fullName', 'email', 'nameError', 'emailError', 'submitBtn', 'loadingSpinner')
